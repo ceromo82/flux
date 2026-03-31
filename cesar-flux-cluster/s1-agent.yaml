@@ -29,20 +29,20 @@ spec:
         name: cesar-flux
       inventory_only: false
       env:
-        admission_controllers:
-          validating:
-            enabled: true
         helper:
           inventory_enabled: true
       repositories:
         agent: containers.sentinelone.net/cws-agent/s1agent
         helper: containers.sentinelone.net/cws-agent/s1helper
+      admission_controllers:
+        validating:
+          enabled: true  
+      configuration:
+        overrideConf:
+          detectors:
+            execute_from_memfd_lua:
+              enabled: true
+              verdict: silent
       tag:
         agent: 25.4.2-ga
         helper: 25.4.2-ga
-      configuration:
-        overrideConf:
-         detectors:
-           execute_from_memfd_lua:
-            enabled: true
-            verdict: silent
