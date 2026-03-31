@@ -36,11 +36,10 @@ spec:
         helper: containers.sentinelone.net/cws-agent/s1helper
       admission_controllers:
         validating:
-          enabled: true  
-      configuration:
-        overrideConf:
-          detectors:
-            execute_from_memfd_lua:
+          enabled: true 
+      overrideConf:
+        detectors:
+           execute_from_memfd_lua:
               enabled: true
               verdict: silent
       tag:
