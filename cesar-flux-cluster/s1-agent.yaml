@@ -24,7 +24,7 @@ spec:
       # but for a direct translation of your command:
       site_key:
         name: s1-site-key
-      imagePullSecret: sentinelone-pull-secret
+        imagePullSecret: sentinelone-pull-secret
       
     configuration:
       cluster:
