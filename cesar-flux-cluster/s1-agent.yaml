@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: s1-agent
-      version: "25.4.2" # Matches your requested version
+      version: "25.3.2" # Matches your requested version
       sourceRef:
         kind: HelmRepository
         name: sentinelone
