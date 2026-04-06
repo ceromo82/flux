@@ -29,7 +29,6 @@ spec:
     configuration:
       cluster:
         name: cesar-flux
-      inventory_only: false
       tag:
         agent: 25.4.2-ga
         helper: 25.4.2-ga     
