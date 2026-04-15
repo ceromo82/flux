@@ -1,0 +1,71 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: s1-agent
+  namespace: sentinelone
+spec:
+  interval: 1h
+  releaseName: sentinelone
+  chart:
+    spec:
+      chart: s1-agent
+      version: 25.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: sentinelone
+        namespace: flux-system
+
+  upgrade:
+    cleanupOnFail: true
+
+  driftDetection:
+    mode: enabled
+
+  values:
+    configuration:
+      cluster:
+        name: cesar-minkubecluster
+        uid: "" # set the cluster uid
+      repositories:
+        agent: "containers.sentinelone.net/cws-agent/s1agent"
+        helper: "containers.sentinelone.net/cws-agent/s1helper"
+      tag:
+        agent: "25.4.2-ga"
+        helper: "25.4.2-ga"
+      env:
+        agent:
+          log_level: info
+        helper:
+          log_level: info
+          inventory_enabled: true
+          communicator_enabled: true
+      admission_controllers:
+        validating:
+          enabled: true
+          inventory_only: false
+
+      # Detector config as YAML; chart will convert this to JSON
+      overrideConf:
+        detectors:
+          execute_from_memfd_lua:
+            enabled: true
+            verdict: silent
+
+      # Helm memory and CPU overrides
+      agent:
+        resources:
+          limits:
+            memory: 1945Mi
+          requests:
+            memory: 800Mi
+      helper:
+        resources:
+          limits:
+            memory: 1945Mi
+          requests:
+            memory: 100Mi
+
+    secrets:
+      imagePullSecret: sentinelone-pull-secret
+      site_key:
+        name: s1-site-key
