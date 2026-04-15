@@ -30,8 +30,8 @@ spec:
         agent: "containers.sentinelone.net/cws-agent/s1agent"
         helper: "containers.sentinelone.net/cws-agent/s1helper"
       tag:
-        agent: "25.4.2-ga"
-        helper: "25.4.2-ga"
+        agent: "25.3.2-ga"
+        helper: "25.3.2-ga"
       env:
         agent:
           log_level: info
