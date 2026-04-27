@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-frontend
+  labels:
+    env: development
+    stage: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: development
+      stage: frontend
+  template:
+    metadata:
+      labels:
+        env: development
+        stage: frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          resources:
+            requests:
+              memory: "4Gi"
+              cpu: "4"
+            limits:
+              memory: "4Gi"
+              cpu: "4"
